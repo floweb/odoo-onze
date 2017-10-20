@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  odoo:
+    build: .
+    container_name: odoo
+    depends_on:
+      - db
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./enterprise:/mnt/enterprise
+      - onze_odoo:/var/lib/odoo
+    ports:
+      - 8069:8069
+    networks:
+      - onze
+
+  db:
+    image: postgres:9.5
+    container_name: db
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+    networks:
+      - onze
+
+networks:
+  onze:
+
+volumes:
+  onze_odoo:

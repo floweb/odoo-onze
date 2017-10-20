@@ -1,0 +1,4 @@
+# Needed by Odoo Enterprise
+num2words
+phonenumbers
+pyOpenSSL
