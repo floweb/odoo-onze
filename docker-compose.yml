@@ -10,6 +10,11 @@ services:
       - ./addons:/mnt/extra-addons
       - ./enterprise:/mnt/enterprise
       - onze_odoo:/var/lib/odoo
+    environment:
+        - WDB_NO_BROWSER_AUTO_OPEN=True
+        - WDB_SOCKET_SERVER=wdb
+        - WDB_WEB_PORT=1984
+        - WDB_WEB_SERVER=localhost
     ports:
       - 8069:8069
     networks:
@@ -21,6 +26,15 @@ services:
     environment:
       - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=odoo
+    networks:
+      - onze
+
+  # For development, add a debugger
+  wdb:
+    image: yajo/wdb-server
+    container_name: wdb
+    ports:
+        - 1984:1984
     networks:
       - onze
 

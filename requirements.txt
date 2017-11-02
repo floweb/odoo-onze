@@ -2,3 +2,5 @@
 num2words
 phonenumbers
 pyOpenSSL
+# For development, add a debugger
+wdb
